@@ -10,9 +10,9 @@ export const Container = styled.div`
 
 export const Form = styled.form`
   font-family: 'Roboto Slab, sans-serif';
-
+  
   /* padding: 0 136px 0 136px;  */
-  margin: 0 136px 0 136px; 
+  margin: 0 136px 0 136px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -35,7 +35,9 @@ export const Form = styled.form`
 
   > a {
     margin-top: 42px;
-    color: ${({ theme }) => theme.COLORS.ORANGE};
+    color: ${({ theme }) => theme.COLORS.PINK};
+    display: flex;
+    gap: 8px;
   }
 
   
@@ -43,7 +45,7 @@ export const Form = styled.form`
 
 export const Background = styled.div`
   flex: 1;
-  background: url(${backgroundImg}) no-repeat center right;
+  background: url(${backgroundImg}) no-repeat center left;
   background-size: 70vw;
   opacity: 0.3;
 `
