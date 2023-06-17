@@ -9,9 +9,6 @@ export const Container = styled.div`
 `
 
 export const Form = styled.form`
-  font-family: 'Roboto Slab, sans-serif';
-
-  /* padding: 0 136px 0 136px;  */
   margin: 0 136px 0 136px; 
   display: flex;
   flex-direction: column;
@@ -38,7 +35,9 @@ export const Form = styled.form`
     color: ${({ theme }) => theme.COLORS.ORANGE};
   }
 
-  
+  > Button {
+    padding: 16px;
+  }
 `
 
 export const Background = styled.div`
