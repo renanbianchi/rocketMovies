@@ -1,9 +1,10 @@
 import * as S from './styles'
 import PropTypes from 'prop-types'
 
-export function Button({content, loading = false, ...rest}) {
+export function Button({content, icon: Icon, loading = false, ...rest}) {
   return (
     <S.Container type='button' disabled={loading} {...rest}>
+      {Icon && <Icon size={20} />}
       {loading ? 'Carregando...' : content}
     </S.Container>
   )
@@ -11,5 +12,6 @@ export function Button({content, loading = false, ...rest}) {
 
 Button.propTypes = {
   content: PropTypes.string,
-  loading: PropTypes.bool
+  loading: PropTypes.bool,
+  icon: PropTypes.elementType,
 }

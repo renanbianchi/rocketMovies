@@ -11,5 +11,6 @@ export function Input({ icon: Icon, ...rest}) {
 }
 
 Input.propTypes = {
-  icon: PropTypes.elementType
+  icon: PropTypes.elementType,
+  color: PropTypes.string
 }; 
