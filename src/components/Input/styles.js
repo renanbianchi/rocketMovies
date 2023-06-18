@@ -2,7 +2,10 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   width: 100%;
+  height: 56px;
   display: flex;
+
+  
   align-items: center;
   background-color: ${({theme}) => theme.COLORS.BACKGROUND_800};
   color: ${({theme}) => theme.COLORS.GRAY_100};
@@ -11,17 +14,16 @@ export const Container = styled.div`
   border-radius: 10px;
 
   > svg {
-    margin-left: 16px
+    margin-left: 16px;
   }
 
   > input {
-    height: 56px;
     width: 100%;
-
-    padding: 12px;
     color: ${({theme}) => theme.COLORS.WHITE};
     background: transparent;
     border: none;
+    font-size: 14px;
+    padding: 12px;
 
     &:placeholder {
       color: ${({theme}) => theme.COLORS.GRAY_300}
