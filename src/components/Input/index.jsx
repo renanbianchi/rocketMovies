@@ -1,9 +1,9 @@
 import * as S from './styles'
 import PropTypes from 'prop-types'
 
-export function Input({ icon: Icon, ...rest}) {
+export function Input({ icon: Icon, width,  ...rest}) {
   return (
-    <S.Container>
+    <S.Container width={width}>
       {Icon && <Icon size={20} />}
       <input {...rest} />
     </S.Container>
@@ -12,5 +12,6 @@ export function Input({ icon: Icon, ...rest}) {
 
 Input.propTypes = {
   icon: PropTypes.elementType,
-  color: PropTypes.string
+  color: PropTypes.string,
+  width: PropTypes.string
 }; 

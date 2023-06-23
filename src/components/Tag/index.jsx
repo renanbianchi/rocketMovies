@@ -2,14 +2,16 @@ import * as S from './styles'
 import PropTypes from 'prop-types'
 
 
-export function Tag({content}) {
+export function Tag({ content, width, height}) {
   return (
-    <S.Container>
+    <S.Container width={width} height={height}>
       <span>{content}</span>
     </S.Container>
   )
 }
 
 Tag.propTypes = {
-  content: PropTypes.string
+  content: PropTypes.string,
+  width: PropTypes.string,
+  height: PropTypes.string
 }

@@ -11,6 +11,7 @@ export const Container = styled.div`
   gap: 64px;
   background: ${({theme}) => theme.COLORS.BACKGROUND_800};
 
+
   padding: 0 123px;
   height: 116px;
   width: 100%;

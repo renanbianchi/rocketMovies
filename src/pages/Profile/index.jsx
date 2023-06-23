@@ -1,18 +1,17 @@
 import * as S from './styles'
-import { FiArrowLeft, FiUser , FiMail, FiLock, FiCamera } from "react-icons/fi";
+import { FiUser , FiMail, FiLock, FiCamera } from "react-icons/fi";
 
 import { Input } from '../../components/Input'
 import { Button } from '../../components/Button'
+import { Return } from '../../components/Return'
+
 
 
 
 export function Profile() {
   return (
     <S.Container>
-      <header>
-        <FiArrowLeft />
-        <span>Voltar</span>
-      </header>
+      <Return />
 
       <S.Avatar>    
         <img src="https://github.com/renanbianchi.png" alt="foto do usuário" />

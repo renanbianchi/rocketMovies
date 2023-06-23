@@ -1,13 +1,13 @@
 import styled from "styled-components"
 
 export const Container = styled.div`
-  height: 24px;
+  height: ${({height}) => height ? height : "24px"};
+  width: ${({width}) => width ? width : "fit-content"};
   display: flex;
   justify-content: center;
   align-items: center;
   color: ${({theme}) => theme.COLORS.PINK};
   background-color: ${({theme}) => theme.COLORS.BACKGROUND_600};
-  width: fit-content;
   padding: 5px 16px;
   border-radius: 8px;
 

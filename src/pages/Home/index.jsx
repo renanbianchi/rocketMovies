@@ -8,13 +8,15 @@ export function Home() {
   return (
     <S.Container>
       <Header />
-      <S.HomeHeader>
-      <h2>Meus filmes</h2>
-      <Button icon={FiPlus} content="adicionar filme" />
-      </S.HomeHeader>
-      <Card />
-      <Card />
-      <Card />    
+      <S.HomeContent>
+        <S.HomeHeader>
+        <h2>Meus filmes</h2>
+        <Button icon={FiPlus} content="adicionar filme" />
+        </S.HomeHeader>
+        <Card />
+        <Card />
+        <Card />    
+      </S.HomeContent>
     </S.Container>
     
   )
