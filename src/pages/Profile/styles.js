@@ -3,36 +3,25 @@ import styled from "styled-components";
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
-  
-  > header {
-    display: flex;
-    justify-content: left;
-    align-items: center;
-
-    width: 100%;
-    height: 144px;
-    background-color: ${({theme}) => theme.COLORS.BACKGROUND_700};
-    gap: 10px;
-
-    padding-left: 144px;
-    
-    font-size: 16px;
-    color: ${({theme}) => theme.COLORS.PINK};
-
-    > svg {
-      stroke: ${({theme}) => theme.COLORS.PINK};
-    }
-
-    > span {
-      cursor: pointer;
-    }
-    
-  }
+  align-items: left;
+  justify-content: center;
 
 `
-
+export const ReturnContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: center;
+  background: ${({theme}) => theme.COLORS.BACKGROUND_700};
+`
+export const Profile = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`
 export const Avatar = styled.div`
+grid-area: avatar;
 display:flex;
 > img {
   width: 186px;
@@ -73,6 +62,7 @@ display:flex;
 }
 `
 export const Form = styled.form`
+  grid-area: form;
   display: flex;
   flex-direction: column;
   align-items: center;

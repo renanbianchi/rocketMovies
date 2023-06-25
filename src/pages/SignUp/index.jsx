@@ -21,7 +21,7 @@ export function SignUp() {
       <Input placeholder="Nome Completo" type="text" icon={FiUser} />
       <Input placeholder="E-mail" type="text" icon={FiMail} />
       <Input placeholder="Senha" type="password" icon={FiLock} />
-      <Input placeholder="Confirme sua senha" type="password" icon={FiLock} />
+      <Input placeholder="Confirme sua senha" type="password" icon={FiLock} margin="4px 0 16px 0" />
 
       <Button content="Cadastrar" />
 

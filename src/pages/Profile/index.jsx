@@ -11,26 +11,30 @@ import { Return } from '../../components/Return'
 export function Profile() {
   return (
     <S.Container>
-      <Return />
-
-      <S.Avatar>    
-        <img src="https://github.com/renanbianchi.png" alt="foto do usuário" />
-        <label htmlFor='avatar'>
-          <FiCamera />
-
-          <input id="avatar" type="file" />
-
-        </label>
-      </S.Avatar>
+      <S.ReturnContainer>
+        <Return />
+      </S.ReturnContainer>
       
-      <S.Form>
-        <Input icon={FiUser} type="text" placeholder="Renan Bianchi" />
-        <Input icon={FiMail} type="email" placeholder="renanbianchi@gmail.com" />
+      <S.Profile>
+        <S.Avatar>    
+          <img src="https://github.com/renanbianchi.png" alt="foto do usuário" />
+          <label htmlFor='avatar'>
+            <FiCamera />
 
-        <Input icon={FiLock} type="password" placeholder="Senha atual" />
-        <Input icon={FiLock} type="password" placeholder="Nova senha" />
-        <Button content="Salvar" />
-      </S.Form>
+            <input id="avatar" type="file" />
+
+          </label>
+        </S.Avatar>
+        
+        <S.Form>
+          <Input icon={FiUser} type="text" placeholder="Renan Bianchi" />
+          <Input icon={FiMail} type="email" placeholder="renanbianchi@gmail.com" />
+
+          <Input icon={FiLock} type="password" placeholder="Senha atual" />
+          <Input icon={FiLock} type="password" placeholder="Nova senha" />
+          <Button content="Salvar" />
+        </S.Form>
+      </S.Profile>
 
     </S.Container>
   )

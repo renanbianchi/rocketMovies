@@ -15,6 +15,7 @@ export const Form = styled.form`
   justify-content: center;
   align-items: center;
 
+
   > h1 {
     font-size: 48px;
     color: ${({theme}) => theme.COLORS.PINK};
@@ -37,6 +38,10 @@ export const Form = styled.form`
 
   > Button {
     padding: 16px;
+  }
+
+  > Input {
+    margin: 8px 0;
   }
 `
 

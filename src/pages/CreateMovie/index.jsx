@@ -27,8 +27,8 @@ export function CreateMovie() {
       <h1>Novo filme</h1>
       </S.Content>
       <S.Form>
-        <Input width="48.5%" placeholder="Título" />
-        <Input width="48.5%" placeholder="Sua nota (de 0 a 5)" />
+        <Input width="48%" placeholder="Título" />
+        <Input width="48%" placeholder="Sua nota (de 0 a 5)" />
         <TextArea placeholder="Observações"/>
       </S.Form>
       <h2>Marcadores</h2>

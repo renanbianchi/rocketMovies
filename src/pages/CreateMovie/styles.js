@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
 display: grid;
-grid-template-rows: 116px auto;
+grid-template-rows: 100px auto;
 
 > h2 {
   grid-area: h2;

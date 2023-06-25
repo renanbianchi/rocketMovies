@@ -1,18 +1,20 @@
 import styled from "styled-components";
 import { Input } from "../Input"
+import { Link } from 'react-router-dom'
 
 
 export const Container = styled.div`
+  grid-area: header;
   position: fixed;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-evenly;
   gap: 64px;
-  background: ${({theme}) => theme.COLORS.BACKGROUND_800};
+  background: ${({theme}) => theme.COLORS.BACKGROUND_900};
 
 
-  padding: 0 123px;
+  padding: 0 150px;
   height: 116px;
   width: 100%;
   
@@ -26,7 +28,6 @@ export const Container = styled.div`
 export const SearchBar = styled(Input)`
   width: 630px;
   height: 34px;
-  border: 1px solid red;
 `
 
 export const Profile = styled.div`
@@ -56,4 +57,24 @@ export const Profile = styled.div`
     border-radius: 35px;
     border: 2px solid ${({theme}) => theme.COLORS.GRAY_400};
   }
+`
+
+export const userData = styled(Link)`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  white-space: nowrap;
+  font-size: 14px;
+  color: ${({theme}) => theme.COLORS.WHITE};
+
+  > span {
+    text-align: right;
+    color: ${({theme}) => theme.COLORS.GRAY_300};
+    cursor: pointer;
+  }
+`
+
+export const exit = styled(Link)`
+  text-align: right;
+  color: ${({theme}) => theme.COLORS.GRAY_300};
 `
