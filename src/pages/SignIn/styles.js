@@ -1,4 +1,7 @@
 import styled from "styled-components";
+import { Link } from 'react-router-dom'
+
+
 import backgroundImg from '../../assets/Background.png'
 
 export const Container = styled.div`
@@ -31,18 +34,7 @@ export const Form = styled.form`
     color: ${({ theme }) => theme.COLORS.GRAY_100};
   }
 
-  > a {
-    margin-top: 42px;
-    color: ${({ theme }) => theme.COLORS.ORANGE};
-  }
-
-  > Button {
-    padding: 16px;
-  }
-
-  > Input {
-    margin: 8px 0;
-  }
+  
 `
 
 export const Background = styled.div`
@@ -51,3 +43,14 @@ export const Background = styled.div`
   background-size: 70vw;
   opacity: 0.3;
 `
+
+ export const ButtonLink = styled(Link)`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+
+  > span {
+    margin-top: 42px;
+    color: ${({ theme }) => theme.COLORS.ORANGE};
+  }
+ `

@@ -6,7 +6,6 @@ import { Input } from '../../components/Input'
 import { Button } from '../../components/Button'
 
 
-//import { Link } from 'react-router-dom'
 
 
 
@@ -25,9 +24,9 @@ export function SignUp() {
 
       <Button content="Cadastrar" />
 
-      
-      <a href="#"><FiArrowLeft />Voltar para o login</a>
-
+      <S.LinkButton to="/">
+        <FiArrowLeft /><span>Voltar para o login</span>
+      </S.LinkButton>
       </S.Form>
     </S.Container>
   )

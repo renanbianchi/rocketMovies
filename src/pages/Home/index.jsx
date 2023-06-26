@@ -1,8 +1,9 @@
+import { Link } from 'react-router-dom'
+
 import { Header } from "../../components/Header"
 import { Button } from "../../components/Button"
 import { FiPlus} from "react-icons/fi";
 import { Card } from "../../components/Card"
-import { Link } from 'react-router-dom'
 
 
 import * as S from './styles'

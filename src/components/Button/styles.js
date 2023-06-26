@@ -4,7 +4,7 @@ export const Container = styled.button`
   width: 100%;
   background-color: ${({ theme }) => theme.COLORS.PINK };
   color: ${({ theme }) => theme.COLORS.BACKGROUND_800 };
-
+  height: ${({height}) => height ? height : "auto"};
   display: flex;
   align-items: center;
   justify-content: center;
