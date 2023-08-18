@@ -44,6 +44,10 @@ export const Background = styled.div`
   opacity: 0.3;
 `
 
+export const Button = styled.button`
+
+`
+
  export const ButtonLink = styled(Link)`
   display: flex;
   justify-content: center;
