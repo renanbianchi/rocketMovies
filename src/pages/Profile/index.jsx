@@ -16,10 +16,19 @@ export function Profile() {
   const { user, updateProfile } = useAuth()
 
   const [userData, setUserData] = useState({name: user.name, email: user.email})
+  const [avatarFile, setAvatarFile] = useState(null)
 
   const handleUpdateProfile = async () => {
-    await updateProfile(userData)
+    await updateProfile(userData, avatarFile)
     navigate("/")
+  }
+
+  const handleChangeAvatar = (event) => {
+    const file = event.target.files[0]
+    setAvatarFile(file)
+
+    const imagePreview = URL.createObjectURL(file)
+    setUserData(prev => ({...prev, avatar: imagePreview}))
   }
 
   return (
@@ -30,11 +39,11 @@ export function Profile() {
       
       <S.Profile>
         <S.Avatar>    
-          <img src="https://github.com/renanbianchi.png" alt="foto do usuário" />
+          <img src={userData.avatar} alt="foto do usuário" />
           <label htmlFor='avatar'>
             <FiCamera />
 
-            <input id="avatar" type="file" />
+            <input id="avatar" type="file" onChange={handleChangeAvatar} />
 
           </label>
         </S.Avatar>
@@ -42,7 +51,6 @@ export function Profile() {
         <S.Form>
           <Input icon={FiUser} type="text" onChange={e => setUserData(prev => ({...prev, name: e.target.value.trim()}))} placeholder={user.name} />
           <Input icon={FiMail} type="email" onChange={e => setUserData(prev => ({...prev, email: e.target.value.trim().toLowerCase()}))} placeholder={user.email} />
-
           <Input icon={FiLock} onChange={e => setUserData(prev => ({...prev, oldPassword: e.target.value}))} type="password" placeholder="Senha atual" />
           <Input icon={FiLock} onChange={e => setUserData(prev => ({...prev, password: e.target.value}))} type="password" placeholder="Nova senha" />
           <Button onClick={handleUpdateProfile} content="Salvar" />
