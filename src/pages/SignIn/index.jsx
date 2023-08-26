@@ -35,7 +35,7 @@ export function SignIn() {
         
         <Button height="56px" content="Entrar" onClick={handleSignIn} />
         
-        <S.ButtonLink to="/register">
+        <S.ButtonLink>
           <span>Criar conta</span>
         </S.ButtonLink>
       </S.Form>
