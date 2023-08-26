@@ -16,6 +16,12 @@ export function SignIn() {
     signIn(userDetails)
   }
 
+  const handleKeyPress = (e) => {
+    if (e.keyCode === 13 || e.which === 13) {
+      handleSignIn()
+    }
+  } 
+
   return (
     <S.Container>
       
@@ -24,8 +30,8 @@ export function SignIn() {
         <p>Aplicação para acompanhar tudo que assistir.</p>
         <h2>Faça seu login</h2>
         
-        <Input placeholder="E-mail" type="text" icon={FiMail} margin="4px 0" onChange={e => setUserDetails(prev => ({...prev, email: e.target.value.toLowerCase()}))} />
-        <Input placeholder="Senha" type="password" icon={FiLock} margin="4px 0 24px 0" onChange={e => setUserDetails(prev => ({...prev, password: e.target.value}))} />
+        <Input placeholder="E-mail" type="text" icon={FiMail} margin="4px 0" onKeyPress={handleKeyPress} onChange={e => setUserDetails(prev => ({...prev, email: e.target.value.toLowerCase()}))} />
+        <Input placeholder="Senha" type="password" icon={FiLock} margin="4px 0 24px 0" onKeyPress={handleKeyPress} onChange={e => setUserDetails(prev => ({...prev, password: e.target.value}))} />
         
         <Button height="56px" content="Entrar" onClick={handleSignIn} />
         

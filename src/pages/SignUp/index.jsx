@@ -18,7 +18,6 @@ export function SignUp() {
   const navigate = useNavigate()
   
   function handleSignUp() {
-    console.log(userInfos)
 
     if (!userInfos.name || !userInfos.email || !userInfos.password1 || !userInfos.password2) {
       return alert("Por favor, preencha todos os campos!")
@@ -43,6 +42,13 @@ export function SignUp() {
     })
   }
 
+  const handleKeyPress = (e) => {
+
+    if (e.keyCode === 13 || e.which === 13) {
+      handleSignUp()
+    }
+  } 
+
   return (
     <S.Container>
       <S.Background />
@@ -51,10 +57,10 @@ export function SignUp() {
         <h1>RocketMovies</h1>
         <p>Aplicação para acompanhar tudo que assistir.</p>
         <h2>Crie sua conta</h2>
-        <Input placeholder="Nome Completo" type="text" icon={FiUser} onChange={e => setUserInfos(prev => ({...prev, name: e.target.value.toLowerCase()}))}/>
-        <Input placeholder="E-mail" type="text" icon={FiMail} onChange={e => setUserInfos(prev => ({...prev, email: e.target.value.toLowerCase()}))} />
-        <Input placeholder="Senha" type="password" icon={FiLock} onChange={e => setUserInfos(prev => ({...prev, password1: e.target.value}))} />
-        <Input placeholder="Confirme sua senha" type="password" icon={FiLock} margin="4px 0 16px 0" onChange={e => setUserInfos(prev => ({...prev, password2: e.target.value}))} />
+        <Input placeholder="Nome Completo" type="text" icon={FiUser} onKeyPress={handleKeyPress} onChange={e => setUserInfos(prev => ({...prev, name: e.target.value.toLowerCase()}))}/>
+        <Input placeholder="E-mail" type="text" icon={FiMail} onKeyPress={handleKeyPress} onChange={e => setUserInfos(prev => ({...prev, email: e.target.value.toLowerCase()}))} />
+        <Input placeholder="Senha" type="password" icon={FiLock} onKeyPress={handleKeyPress} onChange={e => setUserInfos(prev => ({...prev, password1: e.target.value}))} />
+        <Input placeholder="Confirme sua senha" type="password" icon={FiLock} onKeyPress={handleKeyPress} margin="4px 0 16px 0" onChange={e => setUserInfos(prev => ({...prev, password2: e.target.value}))} />
 
         <Button content="Cadastrar" onClick={handleSignUp} />
 
