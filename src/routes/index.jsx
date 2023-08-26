@@ -1,20 +1,21 @@
 import { BrowserRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
-
+import { useAuth } from '../hooks/auth'
 
 import { AppRoutes } from './app.routes'
 import { AuthRoutes } from './app.auth'
 
 
 
-export function Routes({isLoggedIn}) {
+export function Routes() {
+  const { user } = useAuth()
   return (
     <BrowserRouter>
-      {isLoggedIn ? <AppRoutes /> : <AuthRoutes />}
+      {user ? <AppRoutes /> : <AuthRoutes />}
     </BrowserRouter>
   )
 }
 
 Routes.propTypes = {
-  isLoggedIn: PropTypes.bool
+  user: PropTypes.any
 }; 
