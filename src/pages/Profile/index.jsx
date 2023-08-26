@@ -3,19 +3,20 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../hooks/auth';
 import * as S from './styles'
 import { FiUser , FiMail, FiLock, FiCamera } from "react-icons/fi";
+import { api } from '../../service/api';
 
 import { Input } from '../../components/Input'
 import { Button } from '../../components/Button'
 import { Return } from '../../components/Return'
-
-
+import avatarPlaceholder from "../../assets/avatar_placeholder.svg"
 
 
 export function Profile() {
   const navigate = useNavigate()
   const { user, updateProfile } = useAuth()
 
-  const [userData, setUserData] = useState({name: user.name, email: user.email})
+  const avatarURL = user.avatar ? `${api.defaults.baseURL}/files/${user.avatar}` : avatarPlaceholder
+  const [userData, setUserData] = useState({name: user.name, email: user.email, avatar: avatarURL})
   const [avatarFile, setAvatarFile] = useState(null)
 
   const handleUpdateProfile = async () => {
