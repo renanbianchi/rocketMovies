@@ -10,15 +10,21 @@ import { Button } from '../../components/Button'
 
 
 
-
-
 export function CreateMovie() {
   const [bookmarks, setBookmarks] = useState([])
   const [newBookmark, setNewBookmark] = useState('')
 
   function handleAddBookmark() {
+    const filter = bookmarks.filter(bookmark => bookmark.toLowerCase() === newBookmark.toLowerCase())
+
+    if (filter.length > 0) {
+      setNewBookmark('')
+      return alert("Este Marcador já foi registrado")
+    }
+
     setBookmarks((prev) => [...prev, newBookmark])
     setNewBookmark('')
+
   }
 
   function handleRemoveBookmark (deleted) {

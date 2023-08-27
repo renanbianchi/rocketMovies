@@ -58,11 +58,12 @@ export const Form = styled.form`
 export const Marquers = styled.div`
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   align-items: center;
-  height: 88px;
+  height: auto;
   grid-area: marquers;
   margin: 24px 150px 40px 150px;
-  padding: 16px;
+  padding: 16px 64px;
   border-radius: 8px;
   background: ${({theme}) => theme.COLORS.BACKGROUND_500};
 `
