@@ -13,11 +13,18 @@ import { Button } from '../../components/Button'
 
 
 export function CreateMovie() {
-  const [isNew, setIsNew] = useState(true)
+  const [bookmarks, setBookmarks] = useState([])
+  const [newBookmark, setNewBookmark] = useState('')
 
-  const isNewHandler = () => {
-    setIsNew(!isNew)
-  } 
+  function handleAddBookmark() {
+    setBookmarks((prev) => [...prev, newBookmark])
+    setNewBookmark('')
+  }
+
+  function handleRemoveBookmark (deleted) {
+    setBookmarks(prev => prev.filter(bookmark => bookmark !== deleted))
+  }
+
   
   return (
     <S.Container>
@@ -33,7 +40,15 @@ export function CreateMovie() {
       </S.Form>
       <h2>Marcadores</h2>
       <S.Marquers>
-        <MovieItem isNew={isNew} placeholder="Novo Marcador" onClick={isNewHandler}/>
+        {bookmarks.map((bookmark, index) => (
+        <MovieItem 
+          isNew={false}
+          key={String(index)}
+          value={bookmark} 
+          onClick={() => {handleRemoveBookmark(bookmark)}}
+        />
+        ))}
+        <MovieItem isNew placeholder="Novo Marcador" value={newBookmark} onChange={e => setNewBookmark(e.target.value)} onClick={handleAddBookmark}/>
       </S.Marquers>
       <S.Buttons>
         <Button content="Excluir Filme" />
