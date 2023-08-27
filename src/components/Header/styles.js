@@ -37,16 +37,6 @@ export const Profile = styled.div`
   gap: 9px;
   font-weight: 700;
 
-  /* .userData {
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    font-size: 14px;
-    width: fit-content;
-  }
- */
   > img {
     width: 64px;
     height: 64px;
