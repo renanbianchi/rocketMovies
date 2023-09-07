@@ -1,45 +1,53 @@
-import styled from "styled-components";
-
+import styled from 'styled-components'
 
 export const Container = styled.div`
-display: grid;
-grid-template-rows: 100px auto;
+  display: grid;
+  grid-template-rows: 100px auto;
 
-> h2 {
-  grid-area: h2;
-  margin-left: 150px;
-  margin-top: 40px;
-  color: ${({theme}) => theme.COLORS.GRAY_500};
-  font-weight: 400;
-  font-size: 20px;
-}
+  > h2 {
+    grid-area: h2;
+    margin-left: 150px;
+    margin-top: 40px;
+    color: ${({ theme }) => theme.COLORS.GRAY_500};
+    font-weight: 400;
+    font-size: 20px;
+  }
 
-grid-template-areas: 
-  "header"
-  "return"
-  "h1"
-  "content"
-  "form"
-  "h2"
-  "marquers"
-  "button";
+  > span {
+    grid-area: a;
+    margin-left: 150px;
+    margin-bottom: 40px;
+    color: ${({ theme }) => theme.COLORS.GRAY_500};
+    font-weight: 400;
+    font-size: 20px;
+  }
+
+  grid-template-areas:
+    'header'
+    'return'
+    'h1'
+    'content'
+    'form'
+    'h2'
+    'marquers'
+    'a'
+    'cards'
+    'button';
 `
 
 export const Content = styled.div`
-grid-area: content;
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: left;
+  grid-area: content;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: left;
 
-
-> h1 {
-  grid-area: h1;
-  margin: 0 150px;
-  text-align: start;
-  font-weight: 500;
-  margin-bottom: 40px;
-}
+  > h1 {
+    margin: 0 150px;
+    text-align: start;
+    font-weight: 500;
+    margin-bottom: 40px;
+  }
 `
 
 export const Form = styled.form`
@@ -53,8 +61,13 @@ export const Form = styled.form`
   flex-direction: row;
   flex-wrap: wrap;
   gap: 40px;
-  
 `
+export const Inputs = styled.div`
+  display: flex;
+  width: 100%;
+  gap: 40px;
+`
+
 export const Marquers = styled.div`
   display: flex;
   flex-direction: row;
@@ -65,7 +78,7 @@ export const Marquers = styled.div`
   margin: 24px 150px 40px 150px;
   padding: 16px 64px;
   border-radius: 8px;
-  background: ${({theme}) => theme.COLORS.BACKGROUND_500};
+  background: ${({ theme }) => theme.COLORS.BACKGROUND_500};
 `
 
 export const Buttons = styled.div`
@@ -77,7 +90,34 @@ export const Buttons = styled.div`
   height: 56px;
 
   > button:first-child {
-    background-color: ${({theme}) => theme.COLORS.BACKGROUND_500};
-    color: ${({theme}) => theme.COLORS.PINK};
+    background-color: ${({ theme }) => theme.COLORS.BACKGROUND_500};
+    color: ${({ theme }) => theme.COLORS.PINK};
   }
+`
+export const Cards = styled.div`
+  grid-area: cards;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  flex-direction: row;
+  flex-wrap: wrap;
+  text-overflow: ellipsis;
+  margin: 0 150px 100px 150px;
+  max-width: auto;
+  padding: 24px;
+  gap: 24px;
+  background: ${({ theme }) => theme.COLORS.BACKGROUND_500};
+  border-radius: 8px;
+`
+
+export const CardInfo = styled.div`
+  display: flex;
+  gap: 8px;
+`
+
+export const CardDescription = styled.div`
+  gap: 12px;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
 `

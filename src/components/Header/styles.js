@@ -1,9 +1,9 @@
-import styled from "styled-components";
-import { Input } from "../Input"
+import styled from 'styled-components'
+import { Input } from '../Input'
 import { Link } from 'react-router-dom'
 
-
 export const Container = styled.div`
+  z-index: 1;
   grid-area: header;
   position: fixed;
   display: flex;
@@ -11,19 +11,18 @@ export const Container = styled.div`
   align-items: center;
   justify-content: space-evenly;
   gap: 64px;
-  background: ${({theme}) => theme.COLORS.BACKGROUND_900};
-
+  background: ${({ theme }) => theme.COLORS.BACKGROUND_900};
 
   padding: 0 150px;
   height: 116px;
   width: 100%;
-  
-  border-bottom: 1px solid ${({theme}) => theme.COLORS.GRAY_400};
+
+  border-bottom: 1px solid ${({ theme }) => theme.COLORS.GRAY_400};
 
   > h1 {
-    color: ${({theme}) => theme.COLORS.PINK};
+    color: ${({ theme }) => theme.COLORS.PINK};
   }
-  `
+`
 
 export const SearchBar = styled(Input)`
   width: 630px;
@@ -41,7 +40,7 @@ export const Profile = styled.div`
     width: 64px;
     height: 64px;
     border-radius: 35px;
-    border: 2px solid ${({theme}) => theme.COLORS.GRAY_400};
+    border: 2px solid ${({ theme }) => theme.COLORS.GRAY_400};
   }
 `
 
@@ -52,17 +51,17 @@ export const userData = styled.div`
   align-items: flex-end;
   white-space: nowrap;
   font-size: 14px;
-  color: ${({theme}) => theme.COLORS.WHITE};
+  color: ${({ theme }) => theme.COLORS.WHITE};
 `
 
 export const profileLink = styled(Link)`
   white-space: nowrap;
   font-size: 14px;
-  color: ${({theme}) => theme.COLORS.WHITE};
+  color: ${({ theme }) => theme.COLORS.WHITE};
 `
 
 export const exit = styled.button`
-  color: ${({theme}) => theme.COLORS.GRAY_300};
+  color: ${({ theme }) => theme.COLORS.GRAY_300};
   background: none;
   border: none;
   width: fit-content;
@@ -71,4 +70,4 @@ export const exit = styled.button`
   &:hover {
     transform: scale(0.9);
   }
-`;
+`

@@ -74,8 +74,6 @@ function AuthProvider( { children }) {
   useEffect(() => {
     const token = localStorage.getItem("@rocketmovies:token")
     const user = localStorage.getItem("@rocketmovies:user")
-
-    console.log(token, user)
     
     if (token && user) {
     
