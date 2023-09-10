@@ -12,7 +12,6 @@ import * as S from './styles'
 
 export function Home() {
   const { signOut } = useAuth()
-
   const [movieNotes, setMovieNotes] = useState([])
 
   useEffect(() => {
@@ -29,7 +28,7 @@ export function Home() {
       }
     }
     fetchTags()
-  }, [])
+  }, [signOut])
 
   return (
     <S.Container>

@@ -49,7 +49,9 @@ export function CreateMovie() {
 
   async function handleNewNote() {
     if (!title || !description || !grade || movieId == 0) {
-      return alert('Por favor, preencha todos os campos e selecione o seu filme na lista!')
+      return alert(
+        'Por favor, preencha todos os campos e selecione o seu filme na lista!'
+      )
     }
 
     if (newBookmark) {
@@ -62,7 +64,7 @@ export function CreateMovie() {
       tags: bookmarks,
       grade,
       movie_id: movieId,
-      background_path: background
+      background_path: background,
     })
 
     alert('Nota criada com sucesso!')
@@ -75,25 +77,22 @@ export function CreateMovie() {
 
     clearTimeout(inputTimer.current)
 
-    inputTimer.current = setTimeout(() => {
+    inputTimer.current = setTimeout(async () => {
       if (title) {
-        movieId
-          ? tmdb.get(`/3/movie/${movieId}`)
-          : tmdb
-              .get(
+        try {
+          const response = movieId
+            ? await tmdb.get(`/3/movie/${movieId}`)
+            : await tmdb.get(
                 `/3/search/movie?query=${title.replace(
                   / /g,
                   '%20'
                 )}&include_adult=false&language=pt-BR&page=1`
               )
-
-              .then((response) => {
-                setMovieData(response.data.results)
-              })
-
-              .catch((error) => {
-                console.error('Error fetching data:', error)
-              })
+          console.log(response.data.results)
+          setMovieData(response.data.results)
+        } catch (error) {
+          console.error('Error fetching data:', error)
+        }
       }
     }, 3000)
   }
@@ -159,7 +158,9 @@ export function CreateMovie() {
                   return (
                     <MovieCard
                       onclick={() => {
-                        setMovieId(movie.id), setTitle(movie.title), setBackground(movie.backdrop_path)
+                        setMovieId(movie.id),
+                          setTitle(movie.title),
+                          setBackground(movie.backdrop_path)
                       }}
                       key={index}
                       title={movie.title}
@@ -186,7 +187,11 @@ export function CreateMovie() {
                             <h2>Título original</h2>
                             <span>{movie.original_title}</span>
                             <h2>Data de lançamento</h2>
-                            <span>{new Date(movie.release_date).toLocaleDateString("pt-BR")}</span>
+                            <span>
+                              {new Date(movie.release_date).toLocaleDateString(
+                                'pt-BR'
+                              )}
+                            </span>
                           </S.CardDescription>
                         </S.CardInfo>
                       )
