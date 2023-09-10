@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { api } from '../../service/api'
+import { useAuth } from '../../hooks/auth'
 
 import { Header } from '../../components/Header'
 import { Button } from '../../components/Button'
@@ -10,12 +11,22 @@ import { Card } from '../../components/Card'
 import * as S from './styles'
 
 export function Home() {
+  const { signOut } = useAuth()
+
   const [movieNotes, setMovieNotes] = useState([])
 
   useEffect(() => {
     async function fetchTags() {
-      const responseMovies = await api.get('/notes')
-      setMovieNotes(responseMovies.data)
+      try {
+        const responseMovies = await api.get('/notes')
+        setMovieNotes(responseMovies.data)
+      } catch (error) {
+        const e = error.response.data.message
+        console.error(e)
+        if (e === 'JWT Token inválido') {
+          signOut()
+        }
+      }
     }
     fetchTags()
   }, [])

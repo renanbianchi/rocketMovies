@@ -5,7 +5,7 @@ export const Container = styled.button`
   color: white;
   border-radius: 12px;
   border: 2px solid ${({ theme }) => theme.COLORS.ORANGE};
-  padding: 8px;
+  padding: 4px 6px;
   max-height: 100%;
   display: flex;
   flex-direction: column;

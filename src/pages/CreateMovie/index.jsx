@@ -183,6 +183,10 @@ export function CreateMovie() {
                           <S.CardDescription>
                             <h2>Descrição</h2>
                             <span>{movie.overview}</span>
+                            <h2>Título original</h2>
+                            <span>{movie.original_title}</span>
+                            <h2>Data de lançamento</h2>
+                            <span>{new Date(movie.release_date).toLocaleDateString("pt-BR")}</span>
                           </S.CardDescription>
                         </S.CardInfo>
                       )
