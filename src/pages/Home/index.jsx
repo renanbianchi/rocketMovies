@@ -45,14 +45,7 @@ export function Home() {
               return (
                 <Card
                   key={index}
-                  title={note.movie_title}
-                  description={note.movie_description}
-                  grade={note.grade}
-                  rawTags={note.tags}
-                  created_at={note.created_at}
-                  name={note.name}
-                  movie_id={note.movie_id}
-                  background={note.background_path}
+                  note={note}
                 />
               )
             })
