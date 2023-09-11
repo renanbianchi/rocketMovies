@@ -47,7 +47,6 @@ function AuthProvider( { children }) {
         fileUploadForm.append("file", avatarFile);
 
         const response = await api.patch("/avatar", fileUploadForm);
-        console.log(response)
 
         user.avatar = response.data.avatar
       }
