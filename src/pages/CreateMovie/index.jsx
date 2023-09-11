@@ -1,6 +1,6 @@
 import * as S from './styles'
-import { useState, useRef } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useState, useRef, useEffect } from 'react'
+import { useNavigate, useLocation } from 'react-router-dom'
 
 import { Header } from '../../components/Header'
 import { Input } from '../../components/Input'
@@ -14,6 +14,7 @@ import { api, tmdb } from '../../service/api'
 /* Tentar achar um novo formato para o envio das Notas (estrelinhas se possível) */
 
 export function CreateMovie() {
+  const { state } = useLocation()
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
   const [background, setBackground] = useState('')
@@ -30,7 +31,7 @@ export function CreateMovie() {
   const navigate = useNavigate()
 
   function handleAddBookmark() {
-    const filter = bookmarks.find(
+    const filter = bookmarks?.find(
       (bookmark) => bookmark.toLowerCase() === newBookmark.toLowerCase()
     )
 
@@ -39,7 +40,7 @@ export function CreateMovie() {
       return alert('Este Marcador já foi registrado')
     }
 
-    setBookmarks((prev) => [...prev, newBookmark])
+    setBookmarks((prev) => (prev ? [...prev, newBookmark] : [newBookmark]))
     setNewBookmark('')
   }
 
@@ -71,6 +72,36 @@ export function CreateMovie() {
     navigate('/')
   }
 
+  async function handleDeleteNote() {
+    if (confirm('Tem certeza que deseja excluir a nota?') == true) {
+      api.delete(`/notes/${state.id}`)
+      alert('Nota excluída com sucesso!')
+      navigate('/')
+    }
+  }
+
+  async function handleUpdateNote() {
+    if (!state) {
+      alert('Ocorreu um Erro, por favor, tente novamente')
+      navigate('/')
+    }
+
+    if (!title || !description || !grade) {
+      return alert(
+        'Por favor, preencha todos os campos e selecione o seu filme na lista!'
+      )
+    }
+
+    api.put('/notes', {
+      note_id: state.id,
+      movie_title: title,
+      movie_description: description,
+      tags: bookmarks,
+      grade,
+    })
+    alert('Nota atualizada com sucesso!')
+  }
+
   const handleInputChange = async (e) => {
     setTitle(e.target.value)
     setMovieId(0)
@@ -88,7 +119,6 @@ export function CreateMovie() {
                   '%20'
                 )}&include_adult=false&language=pt-BR&page=1`
               )
-          console.log(response.data.results)
           setMovieData(response.data.results)
         } catch (error) {
           console.error('Error fetching data:', error)
@@ -97,12 +127,23 @@ export function CreateMovie() {
     }, 3000)
   }
 
+  useEffect(() => {
+    if (state) {
+      setTitle(state.movie_title)
+      setGrade(state.grade)
+      setDescription(state.movie_description)
+      setBookmarks(state?.tags?.split(','))
+    } else {
+      return null
+    }
+  }, [state])
+
   return (
     <S.Container>
       <Header />
       <S.Content>
         <Return />
-        <h1>Novo filme</h1>
+        <h1>{state ? `Editar Filme` : `Novo filme`}</h1>
       </S.Content>
       <S.Form>
         <S.Inputs>
@@ -110,24 +151,27 @@ export function CreateMovie() {
             width="100%"
             placeholder="Título"
             value={title}
-            onChange={handleInputChange}
+            disabled={state ? true : false}
+            onChange={state ? null : handleInputChange}
           />
 
           <Input
             width="100%"
             placeholder="Sua nota (de 0 a 5)"
             onChange={(e) => setGrade(e.target.value)}
+            value={grade}
           />
         </S.Inputs>
 
         <TextArea
           onChange={(e) => setDescription(e.target.value)}
           placeholder="Observações"
+          defaultValue={state ? description : ""}
         />
       </S.Form>
       <h2>Marcadores</h2>
       <S.Marquers>
-        {bookmarks.map((bookmark, index) => (
+        {bookmarks?.map((bookmark, index) => (
           <MovieItem
             isNew={false}
             key={String(index)}
@@ -174,37 +218,39 @@ export function CreateMovie() {
                   })
                   .map((movie) => {
                     return (
-                      console.log(movie),
-                      (
-                        <S.CardInfo key={movie.id}>
-                          <MovieCard
-                            title={movie.title}
-                            img={movie.poster_path}
-                          />
-                          <S.CardDescription>
-                            <h2>Descrição</h2>
-                            <span>{movie.overview}</span>
-                            <h2>Título original</h2>
-                            <span>{movie.original_title}</span>
-                            <h2>Data de lançamento</h2>
-                            <span>
-                              {new Date(movie.release_date).toLocaleDateString(
-                                'pt-BR'
-                              )}
-                            </span>
-                          </S.CardDescription>
-                        </S.CardInfo>
-                      )
+                      <S.CardInfo key={movie.id}>
+                        <MovieCard
+                          title={movie.title}
+                          img={movie.poster_path}
+                        />
+                        <S.CardDescription>
+                          <h2>Descrição</h2>
+                          <span>{movie.overview}</span>
+                          <h2>Título original</h2>
+                          <span>{movie.original_title}</span>
+                          <h2>Data de lançamento</h2>
+                          <span>
+                            {new Date(movie.release_date).toLocaleDateString(
+                              'pt-BR'
+                            )}
+                          </span>
+                        </S.CardDescription>
+                      </S.CardInfo>
                     )
                   })}
           </S.Cards>
         </>
       )}
-      <S.Buttons>
-        {/* <Button content="Excluir Filme" /> */}
-
-        <Button content="Salvar Alterações" onClick={handleNewNote} />
-      </S.Buttons>
+      {state ? (
+        <S.Buttons>
+          <Button content="Excluir Filme" onClick={handleDeleteNote} />
+          <Button content="Salvar Alterações" onClick={handleUpdateNote} />
+        </S.Buttons>
+      ) : (
+        <S.Buttons>
+          <Button content="Salvar Alterações" onClick={handleNewNote} />
+        </S.Buttons>
+      )}
     </S.Container>
   )
 }
