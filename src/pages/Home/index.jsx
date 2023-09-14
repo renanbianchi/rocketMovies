@@ -35,23 +35,20 @@ export function Home() {
     <S.Container>
       <Header />
       <S.HomeContent>
-        <S.HomeHeader >
+        <S.HomeHeader>
           <h2 onClick={() => setFetchAll(false)}>Meus filmes</h2>
           <h2 onClick={() => setFetchAll(true)}>Todos os Filmes</h2>
           <Link to="/new">
             <Button icon={FiPlus} content="adicionar filme" />
           </Link>
         </S.HomeHeader>
-        {movieNotes
-          ? movieNotes.map((note, index) => {
-              return (
-                <Card
-                  key={index}
-                  note={note}
-                />
-              )
-            })
-          : null}
+        {movieNotes.length > 0 ? (
+          movieNotes.map((note, index) => {
+            return <Card key={index} note={note} />
+          })
+        ) : (
+          <h1>Ops, Não há nenhum filme por aqui</h1>
+        )}
       </S.HomeContent>
     </S.Container>
   )

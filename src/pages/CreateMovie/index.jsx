@@ -166,7 +166,7 @@ export function CreateMovie() {
         <TextArea
           onChange={(e) => setDescription(e.target.value)}
           placeholder="Observações"
-          defaultValue={state ? description : ""}
+          defaultValue={state ? description : ''}
         />
       </S.Form>
       <h2>Marcadores</h2>

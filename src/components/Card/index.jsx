@@ -18,7 +18,11 @@ export function Card({ note }) {
 
   return (
     <S.Container>
-      <S.Linker disabled={true} to={user.id === note.user_id ? "/new" : null} state={note}>
+      <S.Linker
+        disabled={true}
+        to={user.id === note.user_id ? '/new' : null}
+        state={note}
+      >
         <S.Titles>
           <h1>{note.movie_title}</h1>
           <span>

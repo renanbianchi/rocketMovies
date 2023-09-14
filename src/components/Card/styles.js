@@ -2,8 +2,6 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 
 export const Container = styled.div`
-
-
   max-height: 215px;
   display: flex;
   flex-direction: row;
@@ -32,6 +30,7 @@ export const Linker = styled(Link)`
   margin-bottom: 24px;
   overflow: hidden;
   text-overflow: ellipsis;
+  text-align: left;
   color: ${({ theme }) => theme.COLORS.GRAY_500};
   text-shadow: 1px 1px 2px black, 1px 0 1px black, 1px 0 0.2px black;
 
