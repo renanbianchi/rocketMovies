@@ -1,19 +1,16 @@
 import styled from 'styled-components'
 
-
 export const Container = styled.div`
   display: grid;
   grid-template-rows: 116px auto;
-  grid-area: 
-  'header' 
-  'content';
+  grid-template-areas: 'header' 'content';
 `
 
 export const HomeContent = styled.div`
   grid-area: content;
   display: flex;
   flex-direction: column;
-  
+  text-align: center;
 `
 
 export const HomeHeader = styled.div`
@@ -22,7 +19,8 @@ export const HomeHeader = styled.div`
   gap: 24px;
   justify-content: center;
   align-items: center;
- margin: 50px 123px 37px 123px; 
+  text-align: center;
+  margin: 50px 123px 37px 123px;
 
   h2 {
     cursor: pointer;
