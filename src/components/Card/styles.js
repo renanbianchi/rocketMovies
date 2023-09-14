@@ -1,71 +1,66 @@
 import styled from 'styled-components'
-import { keyframes } from 'styled-components'
-
-export const slidebottom = keyframes`
-from {
-  max-height: 215px;
-}
-
-to {
-  max-height: 100%;
-}
-`
-
-export const slidetop = keyframes`
-from {
-  max-height: 100%;
-}
-
-to {
-  max-height: 215px;
-}
-`
+import { Link } from 'react-router-dom'
 
 export const Container = styled.div`
-  animation: ${slidetop} 1s normal;
-  animation-fill-mode: forwards;
 
+
+  max-height: 215px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: space-between;
-  background-image: ${({ img }) => (img ? `url(${img})` : 'none')};
-  background-repeat: no-repeat;
-  background-size: 100%;
-  background-position: center;
+  box-shadow: 2px 3px 8px 0px rgba(0, 0, 0, 0.75);
+
+  background-position: right;
   background-color: ${({ theme }) => theme.COLORS.BACKGROUND_700};
   margin: 0 123px 24px 123px;
   border-radius: 16px;
-  padding: 32px;
+  transition: max-height 2s;
 
-  > span {
-    backdrop-filter: blur(1.9px);
-    max-height: auto;
-    margin-bottom: 24px;
-    overflow: hidden;
-    white-space: normal;
-    text-overflow: ellipsis;
-    color: ${({ theme }) => theme.COLORS.GRAY_500};
-    text-shadow: 1px 1px 2px black, 1px 0 1px black, 1px 0 0.2px black;
+  > img {
+    border-radius: 0 16px 16px 0;
+    box-shadow: inset 94px 0px 0px -17px rgba(255, 255, 255, 1);
   }
 
   :hover {
-    animation: ${slidebottom} 1s linear;
-    animation-fill-mode: forwards;
-    cursor: default;
-
-    > span {
-      max-height: 100%;
-      overflow: visible;
-      margin-bottom: 24px;
-      white-space: normal;
-    }
+    max-height: 100%;
+    cursor: none;
   }
 `
+
+export const Linker = styled(Link)`
+  padding: 12px 32px;
+  margin-bottom: 24px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: ${({ theme }) => theme.COLORS.GRAY_500};
+  text-shadow: 1px 1px 2px black, 1px 0 1px black, 1px 0 0.2px black;
+
+  > img {
+    border: 1px solid red;
+    box-shadow: inset 94px 0px 0px -17px rgba(255, 255, 255, 1);
+  }
+
+  color: ${({ theme }) => theme.COLORS.WHITE};
+`
+
 export const Titles = styled.div`
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  text-shadow: 1px 1px 2px black;
+  flex-direction: column;
+  justify-content: center;
+  align-items: left;
+
+  > span {
+    display: flex;
+    align-items: center;
+
+    img {
+      margin-right: 12px;
+      width: 24px;
+      height: 24px;
+      border-radius: 35px;
+      border: 1px solid ${({ theme }) => theme.COLORS.GRAY_400};
+    }
+  }
 `
 
 export const Rating = styled.div`
@@ -82,4 +77,5 @@ export const Tags = styled.div`
   display: flex;
   flex-direction: row;
   gap: 8px;
+  padding-top: 20px;
 `

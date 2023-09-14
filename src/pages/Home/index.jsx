@@ -13,11 +13,12 @@ import * as S from './styles'
 export function Home() {
   const { signOut } = useAuth()
   const [movieNotes, setMovieNotes] = useState([])
+  const [fetchAll, setFetchAll] = useState(true)
 
   useEffect(() => {
     async function fetchTags() {
       try {
-        const responseMovies = await api.get('/notes')
+        const responseMovies = await api.get(fetchAll ? '/notes/all' : '/notes')
         setMovieNotes(responseMovies.data)
       } catch (error) {
         const e = error.response.data.message
@@ -28,14 +29,15 @@ export function Home() {
       }
     }
     fetchTags()
-  }, [signOut])
+  }, [signOut, fetchAll])
 
   return (
     <S.Container>
       <Header />
       <S.HomeContent>
-        <S.HomeHeader>
-          <h2>Meus filmes</h2>
+        <S.HomeHeader >
+          <h2 onClick={() => setFetchAll(false)}>Meus filmes</h2>
+          <h2 onClick={() => setFetchAll(true)}>Todos os Filmes</h2>
           <Link to="/new">
             <Button icon={FiPlus} content="adicionar filme" />
           </Link>
