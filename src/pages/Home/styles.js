@@ -11,21 +11,39 @@ export const HomeContent = styled.div`
   display: flex;
   flex-direction: column;
   text-align: center;
+
+  > h1 {
+    padding-top: 6rem;
+  }
+
+  > img {
+    align-self: center;
+    width: 10vw;
+    padding-top: 2rem;
+  }
 `
 
 export const HomeHeader = styled.div`
   display: flex;
   flex-direction: row;
   gap: 24px;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   text-align: center;
   margin: 50px 123px 37px 123px;
 
+  > Button {
+    width: fit-content;
+    padding: 13px 32px;
+  }
+`
+export const fetchButtons = styled.div`
+  display: flex;
+  gap: 16px;
+
   h2 {
     cursor: pointer;
     color: ${({ theme }) => theme.COLORS.WHITE};
-    background-color: ${({ theme }) => theme.COLORS.ORANGE};
     border-radius: 12px;
     padding: 12px;
     font-weight: 400;
@@ -35,8 +53,13 @@ export const HomeHeader = styled.div`
     }
   }
 
-  > Button {
-    width: fit-content;
-    padding: 13px 32px;
+  h2:nth-child(1) {
+    background-color: ${({ theme, fetchAll }) =>
+      fetchAll ? null : theme.COLORS.ORANGE};
+  }
+
+  h2:nth-child(2) {
+    background-color: ${({ theme, fetchAll }) =>
+      fetchAll ? theme.COLORS.ORANGE : null};
   }
 `
