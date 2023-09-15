@@ -8,10 +8,15 @@ import avatarPlaceholder from '../../assets/avatar_placeholder.svg'
 
 export function Card({ note }) {
   const { user } = useAuth()
+
+  const isCreator = user.id === note.user_id
+
   const avatarURL = note.avatar
     ? `${api.defaults.baseURL}/files/${note.avatar}`
     : avatarPlaceholder
+
   const tags = note.tags?.split(',')
+
   const date = `${new Date(note.created_at).toLocaleDateString(
     'pt-BR'
   )} às ${new Date(note.created_at).toLocaleTimeString('pt-BR')}`
@@ -19,8 +24,8 @@ export function Card({ note }) {
   return (
     <S.Container>
       <S.Linker
-        disabled={true}
-        to={user.id === note.user_id ? '/new' : null}
+        isCreator={isCreator}
+        to={isCreator ? '/new' : null}
         state={note}
       >
         <S.Titles>

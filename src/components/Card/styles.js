@@ -2,7 +2,6 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 
 export const Container = styled.div`
-  max-height: 215px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -12,33 +11,40 @@ export const Container = styled.div`
   background-color: ${({ theme }) => theme.COLORS.BACKGROUND_700};
   margin: 0 123px 24px 123px;
   border-radius: 16px;
-  transition: max-height 2s;
+  max-height: 215px;
+  transition: all 2s;
 
   > img {
     border-radius: 0 16px 16px 0;
-    box-shadow: inset 94px 0px 0px -17px rgba(255, 255, 255, 1);
+    width: 500px;
+    object-fit: cover;
   }
 
   :hover {
     max-height: 100%;
-    cursor: none;
+    cursor: context-menu;
+  }
+
+  @media (max-width: 1300px) {
+    max-height: max-content;
+    width: 80vw;
+
+    scrollbar-width: auto;
+
+    > img {
+      display: none;
+    }
   }
 `
 
 export const Linker = styled(Link)`
+  cursor: ${({ isCreator }) => (isCreator ? `pointer` : `default`)};
+
   padding: 12px 32px;
   margin-bottom: 24px;
   overflow: hidden;
   text-overflow: ellipsis;
   text-align: left;
-  color: ${({ theme }) => theme.COLORS.GRAY_500};
-  text-shadow: 1px 1px 2px black, 1px 0 1px black, 1px 0 0.2px black;
-
-  > img {
-    border: 1px solid red;
-    box-shadow: inset 94px 0px 0px -17px rgba(255, 255, 255, 1);
-  }
-
   color: ${({ theme }) => theme.COLORS.WHITE};
 `
 
