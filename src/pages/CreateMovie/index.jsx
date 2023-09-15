@@ -134,7 +134,7 @@ export function CreateMovie() {
       setDescription(state.movie_description)
       setBookmarks(state?.tags?.split(','))
     } else {
-      return null
+      return undefined
     }
   }, [state])
 
