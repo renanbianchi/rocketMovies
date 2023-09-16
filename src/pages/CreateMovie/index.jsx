@@ -12,8 +12,6 @@ import { MovieCard } from '../../components/MovieCard'
 import { Rating } from '../../components/Rating'
 import { api, tmdb } from '../../service/api'
 
-/* Tentar achar um novo formato para o envio das Notas (estrelinhas se possível) */
-
 export function CreateMovie() {
   const navigate = useNavigate()
   const { state } = useLocation()
