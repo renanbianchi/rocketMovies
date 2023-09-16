@@ -19,6 +19,7 @@ export const Container = styled.div`
     border-radius: 0 16px 16px 0;
     width: 500px;
     object-fit: cover;
+    mask-image: linear-gradient(270deg, rgba(0, 0, 0, 1), transparent);
   }
 
   :hover {
