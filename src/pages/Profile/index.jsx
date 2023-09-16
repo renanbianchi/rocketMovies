@@ -1,27 +1,33 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../../hooks/auth';
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useAuth } from '../../hooks/auth'
 import * as S from './styles'
-import { FiUser , FiMail, FiLock, FiCamera } from "react-icons/fi";
-import { api } from '../../service/api';
+import { FiUser, FiMail, FiLock, FiCamera } from 'react-icons/fi'
+import { api } from '../../service/api'
 
 import { Input } from '../../components/Input'
 import { Button } from '../../components/Button'
 import { Return } from '../../components/Return'
-import avatarPlaceholder from "../../assets/avatar_placeholder.svg"
 
+import avatarPlaceholder from '../../assets/avatar_placeholder.svg'
 
 export function Profile() {
   const navigate = useNavigate()
   const { user, updateProfile } = useAuth()
 
-  const avatarURL = user.avatar ? `${api.defaults.baseURL}/files/${user.avatar}` : avatarPlaceholder
-  const [userData, setUserData] = useState({name: user.name, email: user.email, avatar: avatarURL})
+  const avatarURL = user.avatar
+    ? `${api.defaults.baseURL}/files/${user.avatar}`
+    : avatarPlaceholder
+  const [userData, setUserData] = useState({
+    name: user.name,
+    email: user.email,
+    avatar: avatarURL,
+  })
   const [avatarFile, setAvatarFile] = useState(null)
 
   const handleUpdateProfile = async () => {
     await updateProfile(userData, avatarFile)
-    navigate("/")
+    navigate(-1)
   }
 
   const handleChangeAvatar = (event) => {
@@ -29,7 +35,7 @@ export function Profile() {
     setAvatarFile(file)
 
     const imagePreview = URL.createObjectURL(file)
-    setUserData(prev => ({...prev, avatar: imagePreview}))
+    setUserData((prev) => ({ ...prev, avatar: imagePreview }))
   }
 
   return (
@@ -37,27 +43,56 @@ export function Profile() {
       <S.ReturnContainer>
         <Return />
       </S.ReturnContainer>
-      
+
       <S.Profile>
-        <S.Avatar>    
+        <S.Avatar>
           <img src={userData.avatar} alt="foto do usuário" />
-          <label htmlFor='avatar'>
+          <label htmlFor="avatar">
             <FiCamera />
 
             <input id="avatar" type="file" onChange={handleChangeAvatar} />
-
           </label>
         </S.Avatar>
-        
+
         <S.Form>
-          <Input icon={FiUser} type="text" onChange={e => setUserData(prev => ({...prev, name: e.target.value.trim()}))} placeholder={user.name} />
-          <Input icon={FiMail} type="email" onChange={e => setUserData(prev => ({...prev, email: e.target.value.trim().toLowerCase()}))} placeholder={user.email} />
-          <Input icon={FiLock} onChange={e => setUserData(prev => ({...prev, oldPassword: e.target.value}))} type="password" placeholder="Senha atual" />
-          <Input icon={FiLock} onChange={e => setUserData(prev => ({...prev, password: e.target.value}))} type="password" placeholder="Nova senha" />
+          <Input
+            icon={FiUser}
+            type="text"
+            onChange={(e) =>
+              setUserData((prev) => ({ ...prev, name: e.target.value.trim() }))
+            }
+            placeholder={user.name}
+          />
+          <Input
+            icon={FiMail}
+            type="email"
+            onChange={(e) =>
+              setUserData((prev) => ({
+                ...prev,
+                email: e.target.value.trim().toLowerCase(),
+              }))
+            }
+            placeholder={user.email}
+          />
+          <Input
+            icon={FiLock}
+            onChange={(e) =>
+              setUserData((prev) => ({ ...prev, oldPassword: e.target.value }))
+            }
+            type="password"
+            placeholder="Senha atual"
+          />
+          <Input
+            icon={FiLock}
+            onChange={(e) =>
+              setUserData((prev) => ({ ...prev, password: e.target.value }))
+            }
+            type="password"
+            placeholder="Nova senha"
+          />
           <Button onClick={handleUpdateProfile} content="Salvar" />
         </S.Form>
       </S.Profile>
-
     </S.Container>
   )
 }
