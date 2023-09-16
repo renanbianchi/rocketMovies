@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 import { Input } from '../Input'
-import { Link } from 'react-router-dom'
 
 export const Container = styled.div`
   z-index: 1;
@@ -54,7 +53,8 @@ export const userData = styled.div`
   color: ${({ theme }) => theme.COLORS.WHITE};
 `
 
-export const profileLink = styled(Link)`
+export const userName = styled.div`
+  cursor: pointer;
   white-space: nowrap;
   font-size: 14px;
   color: ${({ theme }) => theme.COLORS.WHITE};

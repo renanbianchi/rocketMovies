@@ -14,6 +14,7 @@ import { api, tmdb } from '../../service/api'
 /* Tentar achar um novo formato para o envio das Notas (estrelinhas se possível) */
 
 export function CreateMovie() {
+  const navigate = useNavigate()
   const { state } = useLocation()
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
@@ -27,8 +28,6 @@ export function CreateMovie() {
   const [bookmarks, setBookmarks] = useState([])
 
   const inputTimer = useRef()
-
-  const navigate = useNavigate()
 
   function handleAddBookmark() {
     const filter = bookmarks?.find(
@@ -69,21 +68,23 @@ export function CreateMovie() {
     })
 
     alert('Nota criada com sucesso!')
-    navigate('/')
+    navigate(-1)
   }
 
   async function handleDeleteNote() {
-    if (confirm('Tem certeza que deseja excluir a nota?') == true) {
+    const confirm = confirm('Tem certeza que deseja excluir a nota?')
+
+    if (confirm) {
       api.delete(`/notes/${state.id}`)
       alert('Nota excluída com sucesso!')
-      navigate('/')
+      navigate(-1)
     }
   }
 
   async function handleUpdateNote() {
     if (!state) {
       alert('Ocorreu um Erro, por favor, tente novamente')
-      navigate('/')
+      navigate(-1)
     }
 
     if (!title || !description || !grade) {
@@ -143,6 +144,7 @@ export function CreateMovie() {
       <Header />
       <S.Content>
         <Return />
+
         <h1>{state ? `Editar Filme` : `Novo filme`}</h1>
       </S.Content>
       <S.Form>

@@ -1,7 +1,8 @@
 import styled from 'styled-components'
-import { Link } from 'react-router-dom'
 
 export const Container = styled.div`
+  cursor: ${({ isCreator }) => (isCreator ? `pointer` : `default`)};
+
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -37,15 +38,16 @@ export const Container = styled.div`
   }
 `
 
-export const Linker = styled(Link)`
-  cursor: ${({ isCreator }) => (isCreator ? `pointer` : `default`)};
+export const Content = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 
   padding: 12px 32px;
   margin-bottom: 24px;
   overflow: hidden;
   text-overflow: ellipsis;
   text-align: left;
-  color: ${({ theme }) => theme.COLORS.WHITE};
 `
 
 export const Titles = styled.div`

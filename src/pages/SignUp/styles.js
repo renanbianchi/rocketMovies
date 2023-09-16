@@ -1,7 +1,5 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 import backgroundImg from '../../assets/Background.png'
-import { Link } from 'react-router-dom'
-
 
 export const Container = styled.div`
   height: 100vh;
@@ -10,7 +8,6 @@ export const Container = styled.div`
 `
 
 export const Form = styled.form`
-
   margin: 0 136px 0 136px;
   display: flex;
   flex-direction: column;
@@ -19,7 +16,7 @@ export const Form = styled.form`
 
   > h1 {
     font-size: 48px;
-    color: ${({theme}) => theme.COLORS.PINK};
+    color: ${({ theme }) => theme.COLORS.PINK};
   }
 
   > h2 {
@@ -35,8 +32,6 @@ export const Form = styled.form`
   > Button {
     padding: 16px;
   }
-
-  
 `
 
 export const Background = styled.div`
@@ -46,16 +41,17 @@ export const Background = styled.div`
   opacity: 0.3;
 `
 
-export const LinkButton = styled(Link)`
+export const LinkButton = styled.div`
+  cursor: pointer;
   margin-top: 42px;
-  width: 100%;
+  width: fit-content;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 8px;
 
-  > span, svg {
+  > span,
+  svg {
     color: ${({ theme }) => theme.COLORS.PINK};
-   
   }
 `

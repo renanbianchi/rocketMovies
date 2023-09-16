@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
 import { api } from '../../service/api'
 import { useAuth } from '../../hooks/auth'
+import { useNavigate } from 'react-router-dom'
 
 import { Header } from '../../components/Header'
 import { Button } from '../../components/Button'
@@ -12,6 +12,7 @@ import emptynotes from '../../assets/empty_notes.svg'
 import * as S from './styles'
 
 export function Home() {
+  const navigate = useNavigate()
   const { signOut } = useAuth()
   const [movieNotes, setMovieNotes] = useState([])
   const [fetchAll, setFetchAll] = useState(true)
@@ -22,6 +23,10 @@ export function Home() {
       note.movie_title.toLowerCase().includes(searchData.toLowerCase())
     )
     setSearch(filteredNotes)
+  }
+
+  const handleCreateNote = () => {
+    navigate('/new')
   }
 
   useEffect(() => {
@@ -49,9 +54,12 @@ export function Home() {
             <h2 onClick={() => setFetchAll(false)}>Meus filmes</h2>
             <h2 onClick={() => setFetchAll(true)}>Todos os Filmes</h2>
           </S.fetchButtons>
-          <Link to="/new">
-            <Button icon={FiPlus} content="adicionar filme" />
-          </Link>
+
+          <Button
+            onClick={handleCreateNote}
+            icon={FiPlus}
+            content="adicionar filme"
+          />
         </S.HomeHeader>
         {movieNotes.length > 0 ? (
           search ? (
