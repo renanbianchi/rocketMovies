@@ -9,6 +9,7 @@ import { Return } from '../../components/Return'
 import { MovieItem } from '../../components/MovieItem'
 import { Button } from '../../components/Button'
 import { MovieCard } from '../../components/MovieCard'
+import { Rating } from '../../components/Rating'
 import { api, tmdb } from '../../service/api'
 
 /* Tentar achar um novo formato para o envio das Notas (estrelinhas se possível) */
@@ -20,7 +21,7 @@ export function CreateMovie() {
   const [description, setDescription] = useState('')
   const [background, setBackground] = useState('')
   const [newBookmark, setNewBookmark] = useState('')
-  const [grade, setGrade] = useState('')
+  const [grade, setGrade] = useState(0)
 
   const [movieId, setMovieId] = useState(0)
 
@@ -156,13 +157,18 @@ export function CreateMovie() {
             disabled={state ? true : false}
             onChange={state ? null : handleInputChange}
           />
-
-          <Input
-            width="100%"
-            placeholder="Sua nota (de 0 a 5)"
-            onChange={(e) => setGrade(e.target.value)}
-            value={grade}
-          />
+          <S.Grade>
+            <span>Sua nota de 0 a 5</span>
+            <input
+              type="range"
+              min={0}
+              max={5}
+              width="100%"
+              onChange={(e) => setGrade(e.target.value)}
+              value={grade}
+            />
+            <Rating grade={Number(grade)} />
+          </S.Grade>
         </S.Inputs>
 
         <TextArea
@@ -171,7 +177,7 @@ export function CreateMovie() {
           defaultValue={state ? description : ''}
         />
       </S.Form>
-      <h2>Marcadores</h2>
+      <h2>Tags</h2>
       <S.Marquers>
         {bookmarks?.map((bookmark, index) => (
           <MovieItem
@@ -185,7 +191,7 @@ export function CreateMovie() {
         ))}
         <MovieItem
           isNew
-          placeholder="Novo Marcador"
+          placeholder="Nova Tag"
           value={newBookmark}
           onChange={(e) => setNewBookmark(e.target.value)}
           onClick={handleAddBookmark}
