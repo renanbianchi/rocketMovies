@@ -7,6 +7,7 @@ import { Header } from '../../components/Header'
 import { Button } from '../../components/Button'
 import { FiPlus } from 'react-icons/fi'
 import { Card } from '../../components/Card'
+import { Loading } from '../../components/Loading'
 import emptynotes from '../../assets/empty_notes.svg'
 
 import * as S from './styles'
@@ -17,6 +18,7 @@ export function Home() {
   const [movieNotes, setMovieNotes] = useState([])
   const [fetchAll, setFetchAll] = useState(true)
   const [search, setSearch] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
 
   const handleSearch = (searchData) => {
     const filteredNotes = movieNotes.filter((note) =>
@@ -32,9 +34,12 @@ export function Home() {
   useEffect(() => {
     async function fetchTags() {
       try {
+        setIsLoading(true)
         const responseMovies = await api.get(fetchAll ? '/notes/all' : '/notes')
         setMovieNotes(responseMovies.data)
+        setIsLoading(false)
       } catch (error) {
+        alert('Ocorreu um erro, por favor, tente novamente.')
         const e = error.response.data.message
         console.error(e)
         if (e === 'JWT Token inválido') {
@@ -45,7 +50,9 @@ export function Home() {
     fetchTags()
   }, [signOut, fetchAll])
 
-  return (
+  return isLoading ? (
+    <Loading />
+  ) : (
     <S.Container>
       <Header onDataChange={handleSearch} />
       <S.HomeContent>
