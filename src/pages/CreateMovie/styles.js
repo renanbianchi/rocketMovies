@@ -31,6 +31,7 @@ export const Container = styled.div`
     'h2'
     'marquers'
     'a'
+    'checkbutton'
     'cards'
     'button';
 `
@@ -102,7 +103,7 @@ export const Cards = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
   text-overflow: ellipsis;
-  margin: 0 150px 100px 150px;
+  margin: 0 150px 48px 150px;
   max-width: auto;
   padding: 24px;
   gap: 24px;
@@ -122,10 +123,29 @@ export const CardDescription = styled.div`
   flex-direction: column;
 `
 
+export const CheckButton = styled.div`
+  grid-area: checkbutton;
+  display: flex;
+  gap: 24px;
+  justify-content: left;
+  align-items: center;
+  box-sizing: border-box;
+  margin-bottom: 40px;
+
+  > span {
+    grid-area: a;
+    margin-left: 150px;
+
+    color: ${({ theme }) => theme.COLORS.GRAY_500};
+    font-weight: 400;
+    font-size: 20px;
+  }
+`
+
 export const Grade = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  accent-color: ${({theme}) => theme.COLORS.PINK};
+  accent-color: ${({ theme }) => theme.COLORS.PINK};
 `

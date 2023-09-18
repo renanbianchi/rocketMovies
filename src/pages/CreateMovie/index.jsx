@@ -10,6 +10,7 @@ import { MovieItem } from '../../components/MovieItem'
 import { Button } from '../../components/Button'
 import { MovieCard } from '../../components/MovieCard'
 import { Rating } from '../../components/Rating'
+
 import { api, tmdb } from '../../service/api'
 
 export function CreateMovie() {
@@ -70,14 +71,13 @@ export function CreateMovie() {
     navigate(-1)
   }
 
-  async function handleDeleteNote() {
-    const confirm = confirm('Tem certeza que deseja excluir a nota?')
-
-    if (confirm) {
+  function handleDeleteNote() {
+    if (confirm('Tem certeza que deseja excluir a nota?') == true) {
       api.delete(`/notes/${state.id}`)
       alert('Nota excluída com sucesso!')
       navigate(-1)
     }
+    return
   }
 
   async function handleUpdateNote() {
@@ -125,6 +125,10 @@ export function CreateMovie() {
         }
       }
     }, 3000)
+  }
+  const handleMovieNotFound = () => {
+    setMovieData([])
+    setMovieId(-1)
   }
 
   useEffect(() => {
@@ -195,12 +199,19 @@ export function CreateMovie() {
           onClick={handleAddBookmark}
         />
       </S.Marquers>
-
-      {movieData.length && (
+      {movieData?.length && (
         <>
-          <span>
-            {movieId == 0 ? `Escolha qual é o filme` : `O filme escolhido`}
-          </span>
+          <S.CheckButton>
+            <span>
+              {movieId == 0 ? `Escolha qual é o filme` : `O filme escolhido`}
+            </span>
+
+            <Button
+              onClick={handleMovieNotFound}
+              fit
+              content="Não encontrei meu filme na lista"
+            />
+          </S.CheckButton>
 
           <S.Cards>
             {movieId == 0
