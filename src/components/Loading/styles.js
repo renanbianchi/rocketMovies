@@ -5,6 +5,7 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
   height: 100vh;
+  width: ${({width}) =>  width ? width : "auto"};
 
   @keyframes ldio-6ziufiyb62s {
     0% {

@@ -39,10 +39,10 @@ export function Home() {
         setMovieNotes(responseMovies.data)
         setIsLoading(false)
       } catch (error) {
-        alert('Ocorreu um erro, por favor, tente novamente.')
         const e = error.response.data.message
         console.error(e)
         if (e === 'JWT Token inválido') {
+          alert('Sua sessão expirou. Por favor efetue o login novamente')
           signOut()
         }
       }

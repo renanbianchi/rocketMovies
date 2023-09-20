@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { api } from '../../service/api'
+import { Loading } from '../../components/Loading'
 
 import * as S from './styles'
 
@@ -12,6 +13,7 @@ import { Button } from '../../components/Button'
 export function SignUp() {
   const [userInfos, setUserInfos] = useState({ name: '', email: '' })
   const navigate = useNavigate()
+  const [isLoading, setIsLoading] = useState(false)
 
   function handleSignUp() {
     if (
@@ -27,11 +29,13 @@ export function SignUp() {
       return alert('As senhas devem ser idênticas!')
     }
 
+    setIsLoading(true)
     api
       .post('/users', userInfos)
       .then(() => {
         alert('Usuário cadastrado com sucesso')
         navigate(-1)
+        setIsLoading(false)
       })
       .catch((error) => {
         if (error.response) {
@@ -54,60 +58,72 @@ export function SignUp() {
 
   return (
     <S.Container>
-      <S.Background />
+      {isLoading ? (
+        <>
+          <S.Background />
+          <Loading width="30vw" />
+        </>
+      ) : (
+        <>
+          <S.Background />
 
-      <S.Form>
-        <h1>RocketMovies</h1>
-        <p>Aplicação para acompanhar tudo que assistir.</p>
-        <h2>Crie sua conta</h2>
-        <Input
-          placeholder="Nome Completo"
-          type="text"
-          icon={FiUser}
-          onKeyPress={handleKeyPress}
-          onChange={(e) =>
-            setUserInfos((prev) => ({ ...prev, name: e.target.value.trim() }))
-          }
-        />
-        <Input
-          placeholder="E-mail"
-          type="text"
-          icon={FiMail}
-          onKeyPress={handleKeyPress}
-          onChange={(e) =>
-            setUserInfos((prev) => ({
-              ...prev,
-              email: e.target.value.trim().toLowerCase(),
-            }))
-          }
-        />
-        <Input
-          placeholder="Senha"
-          type="password"
-          icon={FiLock}
-          onKeyPress={handleKeyPress}
-          onChange={(e) =>
-            setUserInfos((prev) => ({ ...prev, password1: e.target.value }))
-          }
-        />
-        <Input
-          placeholder="Confirme sua senha"
-          type="password"
-          icon={FiLock}
-          onKeyPress={handleKeyPress}
-          margin="4px 0 16px 0"
-          onChange={(e) =>
-            setUserInfos((prev) => ({ ...prev, password2: e.target.value }))
-          }
-        />
+          <S.Form>
+            <h1>RocketMovies</h1>
+            <p>Aplicação para acompanhar tudo que assistir.</p>
+            <h2>Crie sua conta</h2>
+            <Input
+              placeholder="Nome Completo"
+              type="text"
+              icon={FiUser}
+              onKeyPress={handleKeyPress}
+              onChange={(e) =>
+                setUserInfos((prev) => ({
+                  ...prev,
+                  name: e.target.value.trim(),
+                }))
+              }
+            />
+            <Input
+              placeholder="E-mail"
+              type="text"
+              icon={FiMail}
+              onKeyPress={handleKeyPress}
+              onChange={(e) =>
+                setUserInfos((prev) => ({
+                  ...prev,
+                  email: e.target.value.trim().toLowerCase(),
+                }))
+              }
+            />
+            <Input
+              placeholder="Senha"
+              type="password"
+              icon={FiLock}
+              onKeyPress={handleKeyPress}
+              onChange={(e) =>
+                setUserInfos((prev) => ({ ...prev, password1: e.target.value }))
+              }
+            />
+            <Input
+              placeholder="Confirme sua senha"
+              type="password"
+              icon={FiLock}
+              onKeyPress={handleKeyPress}
+              margin="4px 0 16px 0"
+              onChange={(e) =>
+                setUserInfos((prev) => ({ ...prev, password2: e.target.value }))
+              }
+            />
 
-        <Button content="Cadastrar" onClick={handleSignUp} />
+            <Button content="Cadastrar" onClick={handleSignUp} />
 
-        <S.LinkButton onClick={handleGoBack}>
-          <FiArrowLeft />
-          <span>Voltar para o login</span>
-        </S.LinkButton>
-      </S.Form>
+            <S.LinkButton onClick={handleGoBack}>
+              <FiArrowLeft />
+              <span>Voltar para o login</span>
+            </S.LinkButton>
+          </S.Form>
+        </>
+      )}
     </S.Container>
   )
 }

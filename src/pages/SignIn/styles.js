@@ -4,9 +4,10 @@ import backgroundImg from '../../assets/Background.png'
 
 export const Container = styled.div`
   height: 100vh;
-
+  width: auto;
   display: flex;
   align-items: stretch;
+  justify-content: center;
 `
 
 export const Form = styled.form`
